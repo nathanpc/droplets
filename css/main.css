@@ -38,6 +38,46 @@ header {
 	text-align: center;
 }
 
+header > .btn {
+	display: -webkit-box;
+	box-sizing: border-box;
+
+	position: absolute;
+	top: 0;
+	height: 50px;
+	width: 85px;
+
+	padding: 0 10px;
+
+	line-height: 50px;
+	color: whitesmoke;
+	text-shadow: 0 0 2px rgb(11, 97, 119);
+	font-size: 1.0em;
+	font-weight: bold;
+
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,3)), color-stop(100%,rgba(255,255,255,0)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0) 100%);
+}
+
+header > .btn:hover {
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.3)), color-stop(100%,rgba(0,0,0,0)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
+}
+
+header > .btn.left {
+	left: 0;
+	border-right: 1px solid rgb(233, 233, 233);
+}
+
+header > .btn.right {
+	right: 0;
+	border-left: 1px solid rgb(233, 233, 233);
+}
+
 header > .header-label {
 	margin: 0;
 	width: 100%;
