@@ -12,9 +12,10 @@
 
 		<!-- Styling -->
 		<link rel="stylesheet" type="text/css" href="lib/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
 
 		<!-- Javascript -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+		<script src="lib/jquery.min.js" type="text/javascript"></script>
 		<script src="js/main.js" type="text/javascript"></script>
 
 		<!-- Firefox OS Building Blocks -->
@@ -55,149 +56,66 @@
 	</head>
 
 	<body>
-	<section id="index" data-position="current">
-		<section data-type="sidebar">
-			<header>
-				<menu type="toolbar">
-					<a href="#">Done</a>
-				</menu>
-				<h1>Drawer demo</h1>
-			</header>
-			<nav>
-				<ul>
-					<li><a href="#">item 1</a></li>
-					<li><a href="#">item 2</a></li>
-					<li><a href="#">item 3</a></li>
-				</ul>
-				<h2>Tis is a subtitle</h2>
-				<ul>
-					<li><a href="#">item 4</a></li>
-					<li><a href="#">item 5</a></li>
-					<li><a href="#">item 6</a></li>
-				</ul>
-			</nav>
-		</section>
-
-	<section id="drawer" class="skin-organic" role="region">
-			<header class="fixed">
-				<a href="#"><span class="icon icon-menu">hide sidebar</span></a>
-				<a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
-				<h1>Droplets</h1>
-			</header>
-			<article class="content scrollable header">
-				<div data-type="list">
+		<!-- Screen -->
+		<section id="index" data-position="current">
+			<!-- Drawer -->
+			<section data-type="sidebar">
+				<header>
+					<menu type="toolbar">
+						<a href="#">Done</a>
+					</menu>
+					<h1>Drawer demo</h1>
+				</header>
+				<nav>
 					<ul>
-						<li>
-							<a id="btn-action-menu" href="#">
-								<p>Action menu</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-buttons" href="#">
-								<p>Buttons</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-edit-mode" href="#">
-								<p>Edit mode</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-headers" href="#">
-								<p>Headers</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-input-areas" href="#">
-								<p>Input areas</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-status" href="#">
-								<p>Status</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-switches" href="#">
-								<p>Switches</p>
-							</a>
-						</li>
-						<li>
-							<a href="#drawer">
-								<p>Drawer</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-lists" href="#">
-								<p>Lists</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-progress" href="#">
-								<p>Progress and activity</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-scrolling" href="#">
-								<p>Scrolling</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-seek-bars" href="#">
-								<p>Seek bars</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-tabs" href="#">
-								<p>Tabs</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-filters" href="#">
-								<p>Filters</p>
-							</a>
-						</li>
-						<li>
-							<a id="btn-toolbars" href="#">
-								<p>Toolbars</p>
-							</a>
-						</li>
+						<li><a href="#">item 1</a></li>
+						<li><a href="#">item 2</a></li>
+						<li><a href="#">item 3</a></li>
 					</ul>
-				</div>
-			</article>
-		</section> <!-- end drawer -->
-	</section> <!-- end index -->
+					<h2>Tis is a subtitle</h2>
+					<ul>
+						<li><a href="#">item 4</a></li>
+						<li><a href="#">item 5</a></li>
+						<li><a href="#">item 6</a></li>
+					</ul>
+				</nav>
+			</section>
 
-	</body>
+			<section id="drawer" class="skin-organic" role="region">
+				<!-- Header -->
+				<header class="fixed">
+					<!-- Drawer button -->
+					<a href="#">
+						<span class="icon icon-menu">hide sidebar</span>
+					</a>
+					<a href="#drawer">
+						<span class="icon icon-menu">show sidebar</span>
+					</a>
 
+					<!-- Label -->
+					<h1>Droplets</h1>
+				</header>
 
-	<body>
-		<!--<header>
-			<div class="btn left"><button class="action-icon settings">settings</button></div>
-			<p class="header-label">Droplets</p>
-			<div class="btn right">Refresh</div>
-		</header>
+				<!-- Contents -->
+				<article class="content scrollable header">
+					<!-- Big weather indicator -->
+					<div id="big-container">
+						<div class="img-container">
+							<img src="assets/weather/00.png" />
+						</div>
 
-		<div id="Home" class="screen">
-			<div id="big-container">
-				<div class="img-container">
-					<img src="assets/weather/00.png" />
-				</div>
+						<div class="temp-container">
+							<div class="location">Vitoria, ES, Brazil</div>
 
-				<div class="temp-container">
-					<div class="location">Vitoria, ES, Brazil</div>
-
-					<div class="temp">23.7 °C</div>
-					<div class="minmax-container">
-						<div class="minmax min">21.5 °C</div>
-						<div class="minmax max">29.1 °C</div>
+							<div class="temp">23.7 °C</div>
+							<div class="minmax-container">
+								<div class="minmax min">21.5 °C</div>
+								<div class="minmax max">29.1 °C</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>-->
-
-		<!--<footer>
-			Developed by <a href="http://about.me/nathanpc">Nathan Campos</a> (<a href="http://twitter.com/nathanpc">@nathanpc</a>) - Source code on <a href="https://github.com/nathanpc/rcalc">GitHub</a>.
-		</footer>-->
+				</article>
+			</section>
+		</section>
 	</body>
 </html>
