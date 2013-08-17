@@ -8,7 +8,29 @@ var onload = function () {
 	// TODO: The wind speed is always in mph convert it to km/h if metric is selected.
 }
 
+
 var action = {};
+
+/**
+ *	Sets up some event handlers.
+ */
+action.setup = function () {
+	document.querySelector('#btn-headers').addEventListener ('click', function () {
+  		document.querySelector('#headers').className = 'current';
+  		document.querySelector('[data-position="current"]').className = 'left';
+	});
+
+	document.querySelector('#btn-headers-back').addEventListener ('click', function () {
+		document.querySelector('#headers').className = 'right';
+		document.querySelector('[data-position="current"]').className = 'current';
+	});
+}
+
+/**
+ *	Action handlers for the unit selection dialog.
+ *
+ *	@param act Action string.
+ */
 action.units_dialog = function (act) {
 	if (act === "open") {
 		// Open.
@@ -28,11 +50,31 @@ action.units_dialog = function (act) {
 	}
 }
 
+/**
+ *	Sets the unit system used in the application.
+ *
+ *	@param system Name of the system.
+ */
 action.set_unit_system = function (system) {
 	console.log("Set: " + system);
 }
 
+/**
+ *	Go to a screen on the right.
+ *
+ *	@param from Current screen ID.
+ *	@param to Next screen ID.
+ */
+action.push_screen = function (from, to) {
+	//
+}
+
+
 var styling = {};
+
+/**
+ *	The onload styling stuff.
+ */
 styling.load = function () {
 	// Center the main weather thingy.
 	$("#weather-center").css("padding-top",

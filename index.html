@@ -58,8 +58,8 @@
 	</head>
 
 	<body onload="onload()">
-		<!-- Screen -->
-		<section id="index" data-position="current">
+		<!-- Home Screen -->
+		<section id="index" role="region" data-position="current">
 			<!-- Drawer -->
 			<section data-type="sidebar">
 				<header>
@@ -179,6 +179,30 @@
 					</footer>
 				</article>
 			</section>
+		</section>
+
+		<!-- Set Location Screen -->
+		<section id="Set-Location" role="region" data-position="right">
+			<!-- Header -->
+			<header class="fixed">
+				<!-- Back button -->
+				<a id="btn-set-location-back" href="#">
+					<span class="icon icon-back">back</span>
+				</a>
+
+				<!-- Input -->
+				<!--<form action="#">
+					<input type="text" placeholder="Location" required="required">
+					<button type="reset">Remove text</button>
+				</form>-->
+				<h1>Droplets</h1>
+			</header>
+
+			<!-- Contents -->
+			<article class="content scrollable header">
+				<!-- -->
+				<div>It works!</div>
+			</article>
 		</section>
 
 		<!-- Units Dialog -->
