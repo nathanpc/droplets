@@ -2,10 +2,6 @@
 
 /* The big thing at the top */
 
-#Home {
-	padding-top: 10px;
-}
-
 #big-container {
 	display: box;
 	display: -webkit-box;

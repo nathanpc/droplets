@@ -66,19 +66,13 @@
 					<menu type="toolbar">
 						<a href="#">Done</a>
 					</menu>
-					<h1>Drawer demo</h1>
+					<h1>Options</h1>
 				</header>
+
 				<nav>
 					<ul>
-						<li><a href="#">item 1</a></li>
-						<li><a href="#">item 2</a></li>
-						<li><a href="#">item 3</a></li>
-					</ul>
-					<h2>Tis is a subtitle</h2>
-					<ul>
-						<li><a href="#">item 4</a></li>
-						<li><a href="#">item 5</a></li>
-						<li><a href="#">item 6</a></li>
+						<li onclick="action.units_dialog('open')"><a href="#">Change Units</a></li>
+						<li><a href="#">Set Location</a></li>
 					</ul>
 				</nav>
 			</section>
@@ -100,38 +94,41 @@
 
 				<!-- Contents -->
 				<article class="content scrollable header">
-					<!-- Big weather indicator -->
-					<div id="big-container">
-						<div class="img-container">
-							<img src="assets/weather/00.png" />
-						</div>
+					<div id="weather-center">
+						<!-- Big weather indicator -->
+						<div id="big-container">
+							<div class="img-container">
+								<img src="assets/weather/00.png" />
+							</div>
 
-						<div class="temp-container">
-							<div class="location">Vitoria, ES, Brazil</div>
+							<div class="temp-container">
+								<div class="location">Vitoria, ES, Brazil</div>
 
-							<div class="temp">23.7 °C</div>
-							<div class="minmax-container">
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
+								<div class="temp">23.7 °C</div>
+								<div class="minmax-container">
+									<div class="minmax min">21.5 °C</div>
+									<div class="minmax max">29.1 °C</div>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="more-info">
-						<ul>
-							<li>
-								<i class="icon-tint"></i> <span class="humidity">73%</span>
-							</li>
-							<li>
-								<i class="icon-cloud"></i> <span class="wind">75%</span>
-							</li>
-							<li>
-								<i class="icon-leaf"></i> <span class="wind-speed">3.1</span>
-							</li>
-							<li>
-								<i class="icon-location-arrow"></i> <span class="wind-direction">170°</span>
-							</li>
-						</ul>
+						<!-- The more info thingy -->
+						<div class="more-info">
+							<ul>
+								<li>
+									<i class="icon-tint"></i> <span class="humidity">73%</span>
+								</li>
+								<li>
+									<i class="icon-cloud"></i> <span class="wind">75%</span>
+								</li>
+								<li>
+									<i class="icon-leaf"></i> <span class="wind-speed">3.1 mph</span>
+								</li>
+								<li>
+									<i class="icon-location-arrow"></i> <span class="wind-direction">170°</span>
+								</li>
+							</ul>
+						</div>
 					</div>
 
 					<footer class="forecast-container">
@@ -178,148 +175,23 @@
 								<div class="minmax min">21.5 °C</div>
 								<div class="minmax max">29.1 °C</div>
 							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
-							<li class="forecast">
-								<div class="date">Fri</div>
-								<img src="assets/weather/00.png" />
-								<div class="minmax min">21.5 °C</div>
-								<div class="minmax max">29.1 °C</div>
-							</li>
 						</ul>
 					</footer>
 				</article>
 			</section>
+		</section>
+
+		<!-- Units Dialog -->
+		<section id="units-dialog" data-position="back" class="fullscreen" onclick="action.units_dialog('close')">
+			<form role="dialog" data-type="action">
+				<header>Unit Systems</header>
+				<menu>
+					<button>Metric</button>
+					<button>Imperial</button>
+
+					<button>Cancel</button>
+				</menu>
+			</form>
 		</section>
 	</body>
 </html>
