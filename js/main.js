@@ -1,9 +1,16 @@
 // main.js
 
+// A global variable because we all love them.
+var current_weather_data = null;
+
 var onload = function () {
 	// Setup.
+	settings.load();
 	styling.load();
 	action.setup();
+	listing.clear_locations();
+
+	action.refresh();
 
 	// TODO: The wind speed is always in mph convert it to km/h if metric is selected.
 }
@@ -32,6 +39,18 @@ action.setup = function () {
 
 			return false;
 		}
+	});
+}
+
+/**
+ *	Refreshes the weather information.
+ */
+action.refresh = function () {
+	// TODO: Show some refreshing thingy.
+
+	weather.refresh(function (data) {
+		current_weather_data = data;
+		styling.populate_weather_info();
 	});
 }
 
@@ -65,13 +84,22 @@ action.units_dialog = function (act) {
  *	@param system Name of the system.
  */
 action.set_unit_system = function (system) {
-	console.log("Set: " + system);
+	console.log("Set unit system: " + system);
+	system = system.toLowerCase();
+
+	if (system === "imperial") {
+		settings.db.metric = false;
+	} else {
+		settings.db.metric = true;
+	}
+
+	settings.save();
+	styling.populate_weather_info();
 }
 
 /**
  *	Go to a screen on the right.
  *
- *	@param from Current screen ID.
  *	@param to Next screen ID.
  */
 action.push_screen = function (to) {
@@ -104,4 +132,43 @@ styling.load = function () {
 
 	// Fixes the forecast scrolling.
 	$("footer.forecast-container").css("width", $(window).width());
+}
+
+/**
+ *	Populate the weather information.
+ */
+styling.populate_weather_info = function () {
+	var weather_info = JSON.parse(JSON.stringify(current_weather_data));
+	if (current_weather_data === null) {
+		return;
+	}
+
+	var symbol = {
+		temperature: " °C",
+		speed: " km/h"
+	};
+
+	// If the user selected, convert to imperial.
+	if (!settings.db.metric) {
+		//weather_info = weather.convert(weather_info);
+		weather.convert(weather_info);
+		symbol = {
+			temperature: " °F",
+			speed: " mph"
+		};
+	}
+
+	// Weather.
+	$(".temp-container > .location").html(weather_info.name);
+	$(".temp-container > .temp").html(weather_info.main.temp + symbol.temperature);
+	$(".temp-container > .minmax-container > .minmax.min").html(weather_info.main.temp_min + symbol.temperature);
+	$(".temp-container > .minmax-container > .minmax.max").html(weather_info.main.temp_max + symbol.temperature);
+
+	// More info.
+	$(".more-info .humidity").html(weather_info.main.humidity + "%");
+	$(".more-info .cloudiness").html(weather_info.clouds.all + "%");
+	$(".more-info .wind-speed").html(weather_info.wind.speed + symbol.speed);
+	$(".more-info .wind-direction").html(weather_info.wind.deg + "°");
+
+	// TODO: Call the listing.populate_forecast() thingy.
 }

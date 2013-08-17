@@ -12,7 +12,19 @@ listing.populate_locations = function (locations) {
 		var li = document.createElement("li");
 		var a = document.createElement("a");
 		a.setAttribute("href", "#");
-		a.setAttribute("onclick", "console.log(" + location.id + ");");
+		a.setAttribute("id", i);
+		a.onclick = function () {
+			console.log("Selected location: " + locations[this.id].id);
+
+			// Do the settings stuff.
+			settings.db.location.type = "id";
+			settings.db.location.id = locations[this.id].id;
+			settings.save();
+
+			// Go back and refresh.
+			action.pop_screen();
+			action.refresh();
+		}
 
 		var p = document.createElement("p");
 		p.innerHTML = name;
@@ -31,7 +43,15 @@ listing.clear_locations = function () {
 	var a = document.createElement("a");
 	a.setAttribute("href", "#");
 	a.onclick = function () {
-		console.log("GEOLOCATE!!!");
+		console.log("Set to use Geolocation");
+
+		// Do the settings stuff.
+		settings.db.location.type = "geolocation";
+		settings.save();
+
+		// Go back and refresh.
+		action.pop_screen();
+		action.refresh();
 	};
 
 	var p = document.createElement("p");
