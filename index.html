@@ -19,6 +19,8 @@
 		<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script> -->
 		<script src="lib/jquery.min.js" type="text/javascript"></script>
 		<script src="js/main.js" type="text/javascript"></script>
+		<script src="js/weather.js" type="text/javascript"></script>
+		<script src="js/listing.js" type="text/javascript"></script>
 
 		<!-- Everything Firefox OS Building Blocks below -->
 		<link rel="stylesheet" href="lib/Building-Blocks/style/action_menu.css">
@@ -72,7 +74,7 @@
 				<nav>
 					<ul>
 						<li onclick="action.units_dialog('open')"><a href="#">Change Units</a></li>
-						<li><a href="#">Set Location</a></li>
+						<li onclick="action.push_screen('Set-Location')"><a href="#">Set Location</a></li>
 					</ul>
 				</nav>
 			</section>
@@ -191,17 +193,23 @@
 				</a>
 
 				<!-- Input -->
-				<!--<form action="#">
-					<input type="text" placeholder="Location" required="required">
+				<form action="#">
+					<input type="text" placeholder="Location" id="location-input" required="required">
 					<button type="reset">Remove text</button>
-				</form>-->
-				<h1>Droplets</h1>
+				</form>
 			</header>
 
 			<!-- Contents -->
 			<article class="content scrollable header">
-				<!-- -->
-				<div>It works!</div>
+				<div data-type="list">
+					<ul id="location-search-list">
+						<li>
+							<a href="#">
+								<p>Use Geolocation</p>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</article>
 		</section>
 

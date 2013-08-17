@@ -3,7 +3,7 @@
 var onload = function () {
 	// Setup.
 	styling.load();
-	action.units_dialog("setup");
+	action.setup();
 
 	// TODO: The wind speed is always in mph convert it to km/h if metric is selected.
 }
@@ -15,14 +15,23 @@ var action = {};
  *	Sets up some event handlers.
  */
 action.setup = function () {
-	document.querySelector('#btn-headers').addEventListener ('click', function () {
-  		document.querySelector('#headers').className = 'current';
-  		document.querySelector('[data-position="current"]').className = 'left';
+	// Dialog.
+	action.units_dialog("setup");
+
+	// Back buttons.
+	$("#btn-set-location-back").click(function (event) {
+		action.pop_screen();
 	});
 
-	document.querySelector('#btn-headers-back').addEventListener ('click', function () {
-		document.querySelector('#headers').className = 'right';
-		document.querySelector('[data-position="current"]').className = 'current';
+	// Inputs.
+	$("#location-input").keypress(function (event) {
+		if (event.which == 13) {
+			weather.search(this.value, function (data) {
+				listing.populate_locations(data.list);
+			});
+
+			return false;
+		}
 	});
 }
 
@@ -65,8 +74,21 @@ action.set_unit_system = function (system) {
  *	@param from Current screen ID.
  *	@param to Next screen ID.
  */
-action.push_screen = function (from, to) {
-	//
+action.push_screen = function (to) {
+	console.log("Push screen: " + to);
+
+	document.querySelector("#" + to).className = "current";
+	document.querySelector("[data-position=\"current\"]").className = "left";
+}
+
+/**
+ *	Pops the current screen.
+ */
+action.pop_screen = function () {
+	console.log("Pop screen");
+
+	document.querySelector("section[role=\"region\"].current").className = "right";
+	document.querySelector("[data-position=\"current\"]").className = "current";
 }
 
 
