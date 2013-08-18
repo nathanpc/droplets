@@ -135,7 +135,7 @@ var styling = {};
 styling.load = function () {
 	// Center the main weather thingy.
 	$("#weather-center").css("padding-top",
-		($(window).height() / 2) - 25 - ($("#weather-center").height() + $("footer.forecast-container").height() + 50) / 2 + "px");
+		($(window).height() / 2) - 65 - ($("#weather-center").height() + $("footer.forecast-container").height() + 50) / 2 + "px");
 
 	// Fixes the forecast scrolling.
 	$("footer.forecast-container").css("width", $(window).width());
@@ -167,18 +167,20 @@ styling.populate_weather_info = function () {
 		};
 	} else {
 		// Convert the wind speed from mph to km/h.
-		weather_info.wind.speed = (weather_info.wind.speed * 0.621371192).toFixed(2);
+		weather_info.wind.speed = (weather_info.wind.speed * 0.621371192).toFixed(1);
 	}
 
 	// Weather.
+	$("#big-container > .img-container > img").attr("src", weather.icon(weather_info.weather[0].id));
 	$(".temp-container > .location").html(weather_info.name);
-	$(".temp-container > .temp").html(weather_info.main.temp + symbol.temperature);
-	$(".temp-container > .minmax-container > .minmax.min").html(weather_info.main.temp_min + symbol.temperature);
-	$(".temp-container > .minmax-container > .minmax.max").html(weather_info.main.temp_max + symbol.temperature);
+	$(".temp-container > .description").html(weather_info.weather[0].description);
+	$(".temp-container > .temp").html(Math.round(weather_info.main.temp) + symbol.temperature);
+	$(".temp-container > .minmax-container > .minmax.min").html(Math.round(weather_info.main.temp_min) + symbol.temperature);
+	$(".temp-container > .minmax-container > .minmax.max").html(Math.round(weather_info.main.temp_max) + symbol.temperature);
 
 	// More info.
 	$(".more-info .humidity").html(weather_info.main.humidity + "%");
 	$(".more-info .cloudiness").html(weather_info.clouds.all + "%");
-	$(".more-info .wind-speed").html(weather_info.wind.speed + symbol.speed);
-	$(".more-info .wind-direction").html(weather_info.wind.deg + "°");
+	$(".more-info .wind-speed").html(Number(weather_info.wind.speed).toFixed(1) + symbol.speed);
+	$(".more-info .wind-direction").html(Math.round(weather_info.wind.deg) + "°");
 }

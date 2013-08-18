@@ -101,6 +101,59 @@ weather.forecasts = function (callback) {
  *	@returns The temperature in the imperial system.
  */
 weather.convert = function (data) {
-	var temp = ((data * 9) / 5 + 32).toFixed(2);
+	var temp = Math.round((data * 9) / 5 + 32);
 	return temp;
+}
+
+/**
+ *	Gets the correct icon for the current weather. More info: http://bit.ly/XFOlDt
+ *
+ *	@param code Weather code.
+ *	@return A image path.
+ */
+weather.icon = function (code) {
+	if (code >= 200 && code < 300) {
+		// Thunderstorm.
+		return "assets/weather/00.png";
+	} else if (code >= 300 && code < 400) {
+		// Drizzle.
+		return "assets/weather/01.png";
+	} else if (code >= 500 && code < 600) {
+		// Rain.
+		if (code == 500) {
+			return "assets/weather/09.png";
+		} else if (code == 511) {
+			return "assets/weather/05.png";
+		}
+
+		return "assets/weather/12.png";
+	} else if (code >= 600 && code < 700) {
+		// Snow.
+		if (code == 600) {
+			return "assets/weather/13.png";
+		} else if (code == 601) {
+			return "assets/weather/14.png";
+		}
+
+		return "assets/weather/16.png";
+	} else if (code >= 700 && code < 800) {
+		// Atmosphere.
+		return "assets/weather/20.png";
+	} else if (code >= 800 && code < 900) {
+		// Clouds.
+		// TODO: Implement night detection.
+		if (code == 800) {
+			return "assets/weather/32.png";
+		} else if (code == 801) {
+			return "assets/weather/34.png";
+		} else if (code == 802) {
+			return "assets/weather/30.png";
+		} else if (code == 804) {
+			return "assets/weather/26.png";
+		}
+
+		return "assets/weather/28.png";
+	}
+
+	return "assets/weather/25.png";
 }

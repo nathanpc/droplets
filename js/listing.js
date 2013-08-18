@@ -105,17 +105,17 @@ listing.populate_forecast = function () {
 
 		// Weather icon.
 		var img = document.createElement("img");
-		img.src = "assets/weather/00.png";
+		img.src = weather.icon(forecast.weather[0].id);
 
 		// Min.
 		var min = document.createElement("div");
 		min.setAttribute("class", "minmax min");
-		min.innerHTML = forecast.temp.min + symbol;
+		min.innerHTML = Math.round(forecast.temp.min) + symbol;
 
 		// Max.
 		var max = document.createElement("div");
 		max.setAttribute("class", "minmax max");
-		max.innerHTML = forecast.temp.max + symbol;
+		max.innerHTML = Math.round(forecast.temp.max) + symbol;
 
 		li.appendChild(date);
 		li.appendChild(img);
