@@ -2,6 +2,7 @@
 
 // A global variable because we all love them.
 var current_weather_data = null;
+var current_forecasts_data = null;
 
 var onload = function () {
 	// Setup.
@@ -12,7 +13,7 @@ var onload = function () {
 
 	action.refresh();
 
-	// TODO: The wind speed is always in mph convert it to km/h if metric is selected.
+	// TODO: WEATHER STATUS ICONS!!!!!!!!
 }
 
 
@@ -51,6 +52,11 @@ action.refresh = function () {
 	weather.refresh(function (data) {
 		current_weather_data = data;
 		styling.populate_weather_info();
+	});
+
+	weather.forecasts(function (data) {
+		current_forecasts_data = data;
+		listing.populate_forecast();
 	});
 }
 
@@ -95,6 +101,7 @@ action.set_unit_system = function (system) {
 
 	settings.save();
 	styling.populate_weather_info();
+	listing.populate_forecast();
 }
 
 /**
@@ -150,12 +157,17 @@ styling.populate_weather_info = function () {
 
 	// If the user selected, convert to imperial.
 	if (!settings.db.metric) {
-		//weather_info = weather.convert(weather_info);
-		weather.convert(weather_info);
+		weather_info.main.temp = weather.convert(weather_info.main.temp);
+		weather_info.main.temp_min = weather.convert(weather_info.main.temp_min);
+		weather_info.main.temp_max = weather.convert(weather_info.main.temp_max);
+
 		symbol = {
 			temperature: " °F",
 			speed: " mph"
 		};
+	} else {
+		// Convert the wind speed from mph to km/h.
+		weather_info.wind.speed = (weather_info.wind.speed * 0.621371192).toFixed(2);
 	}
 
 	// Weather.
@@ -169,6 +181,4 @@ styling.populate_weather_info = function () {
 	$(".more-info .cloudiness").html(weather_info.clouds.all + "%");
 	$(".more-info .wind-speed").html(weather_info.wind.speed + symbol.speed);
 	$(".more-info .wind-direction").html(weather_info.wind.deg + "°");
-
-	// TODO: Call the listing.populate_forecast() thingy.
 }
