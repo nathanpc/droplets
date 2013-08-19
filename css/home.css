@@ -1,5 +1,17 @@
 /* Home screen CSS */
 
+#loading {
+	position: absolute;
+	left: 0;
+	width: 100%;
+
+	text-align: center;
+}
+
+#loading > p {
+	margin: 10px 0;
+}
+
 /* The big thing at the top */
 
 #big-container {

@@ -5,9 +5,12 @@ var current_weather_data = null;
 var current_forecasts_data = null;
 
 var onload = function () {
-	// Setup.
+	// Setup styling stuff.
 	settings.load();
 	styling.load();
+	loading.hide();
+
+	// Setup other stuff.
 	action.setup();
 	listing.clear_locations();
 
@@ -45,11 +48,13 @@ action.setup = function () {
  *	Refreshes the weather information.
  */
 action.refresh = function () {
-	// TODO: Show some refreshing thingy.
+	loading.show();
 
 	weather.refresh(function (data) {
 		current_weather_data = data;
 		styling.populate_weather_info();
+
+		loading.hide();
 	});
 
 	weather.forecasts(function (data) {
@@ -131,9 +136,13 @@ var styling = {};
  *	The onload styling stuff.
  */
 styling.load = function () {
+	var main_center = ($(window).height() / 2) - 65;
 	// Center the main weather thingy.
 	$("#weather-center").css("padding-top",
-		($(window).height() / 2) - 65 - ($("#weather-center").height() + $("footer.forecast-container").height() + 50) / 2 + "px");
+		main_center - ($("#weather-center").height() + $("footer.forecast-container").height() + 50) / 2 + "px");
+
+	// Center the loading thingy.
+	$("#loading").css("top", main_center - ($("#loading").height() / 2));
 
 	// Fixes the forecast scrolling.
 	$("footer.forecast-container").css("width", $(window).width());
@@ -181,4 +190,27 @@ styling.populate_weather_info = function () {
 	$(".more-info .cloudiness").html(weather_info.clouds.all + "%");
 	$(".more-info .wind-speed").html(Number(weather_info.wind.speed).toFixed(1) + symbol.speed);
 	$(".more-info .wind-direction").html(Math.round(weather_info.wind.deg) + "°");
+}
+
+
+var loading = {};
+
+/**
+ *	Show the loading indicator.
+ */
+loading.show = function () {
+	$("#weather-center").hide();
+	$(".forecast-container").hide();
+
+	$("#loading").show();
+}
+
+/**
+ *	Hides the loading indicator.
+ */
+loading.hide = function () {
+	$("#loading").hide();
+
+	$("#weather-center").show();
+	$(".forecast-container").show();
 }
