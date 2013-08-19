@@ -12,8 +12,6 @@ var onload = function () {
 	listing.clear_locations();
 
 	action.refresh();
-
-	// TODO: WEATHER STATUS ICONS!!!!!!!!
 }
 
 

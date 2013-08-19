@@ -11,11 +11,6 @@ weather.url = function (arguments) {
 	var base = "http://api.openweathermap.org/data/2.5";
 	var suffix = "&units=metric&mode=json";
 
-	// If selected by the user, use the shit imperial system.
-	/*if (!settings.db.metric) {
-		suffix = "&units=imperial&mode=json";
-	}*/
-
 	return base + arguments + suffix;
 }
 
@@ -46,23 +41,31 @@ weather.refresh = function (callback) {
 
 	if (settings.db.location.type === "id") {
 		req_url = weather.url("/weather?id=" + settings.db.location.id);
+		$.ajax({
+			dataType: "jsonp",
+			url: req_url,
+			success: function (data) {
+				callback(data);
+			}
+		});
 	} else if (settings.db.location.type === "geolocation") {
-		// TODO: Get the geolocation stuff.
-		console.warn("Implement this shit");
+		weather.geolocation(function (geo) {
+			req_url = weather.url("/weather?lat=" + geo.lat + "&lon=" + geo.lng);
+
+			$.ajax({
+				dataType: "jsonp",
+				url: req_url,
+				success: function (data) {
+					callback(data);
+				}
+			});
+		});
 	} else {
 		console.log("Invalid location");
 		alert("Invalid location");
 
 		return null;
 	}
-
-	$.ajax({
-		dataType: "jsonp",
-		url: req_url,
-		success: function (data) {
-			callback(data);
-		}
-	});
 }
 
 /**
@@ -75,22 +78,66 @@ weather.forecasts = function (callback) {
 
 	if (settings.db.location.type === "id") {
 		req_url = weather.url("/forecast/daily?id=" + settings.db.location.id);
+		$.ajax({
+			dataType: "jsonp",
+			url: req_url,
+			success: function (data) {
+				callback(data);
+			}
+		});
 	} else if (settings.db.location.type === "geolocation") {
-		// TODO: Get the geolocation stuff.
-		console.warn("Implement this shit");
+		weather.geolocation(function (geo) {
+			req_url = weather.url("/forecast/daily?lat=" + geo.lat + "&lon=" + geo.lng);
+
+			$.ajax({
+				dataType: "jsonp",
+				url: req_url,
+				success: function (data) {
+					callback(data);
+				}
+			});
+		});
 	} else {
 		console.log("Invalid location");
 		alert("Invalid location");
 
 		return null;
 	}
+}
 
-	$.ajax({
-		dataType: "jsonp",
-		url: req_url,
-		success: function (data) {
-			callback(data);
+/**
+ *	Gets the user geolocation.
+ *
+ *	@param callback A JSON with the latitude and longitude.
+ */
+weather.geolocation = function (callback) {
+	navigator.geolocation.getCurrentPosition(function (geo, err) {
+		if (err !== undefined) {
+			if (err.code === 1) {
+				// Denied.
+				console.warn("User denied the geolocation request");
+				console.log(err);
+
+				return alert("Looks like you don't want this app to know your location, please open the menu and manually select your location");
+			} else if (err.code === 2) {
+				// Position unavailable.
+				console.warn("User geolocation position was unavailable");
+				console.log(err);
+
+				return alert("Looks like your device couldn't locate you. Please try again later");
+			} else if (err.code === 1) {
+				// Timeout.
+				console.warn("Geolocation timedout");
+				console.log(err);
+
+				return alert("Looks like it took too long for your device to locate you. Please try again later");
+			}
 		}
+
+		callback({
+			lat: geo.coords.latitude,
+			lng: geo.coords.longitude
+		});
 	});
 }
 
