@@ -1,0 +1,220 @@
+/* Home screen CSS */
+
+#loading {
+	position: absolute;
+	left: 0;
+	width: 100%;
+
+	text-align: center;
+}
+
+#loading > p {
+	margin: 10px 0;
+}
+
+/* The big thing at the top */
+
+#big-container {
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-sizing: horizontal;
+
+	-webkit-box-flex: 2;
+	-moz-box-flex: 2;
+	box-flex: 2;
+
+	width: 100%;
+}
+
+#big-container > .img-container {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+
+	text-align: center;
+}
+
+#big-container > .img-container > img {
+	max-width: 150px;
+}
+
+#big-container > .temp-container {
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	box-sizing: vertical;
+
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+
+	padding-top: 19px;
+}
+
+#big-container > .temp-container > .location {
+	margin-bottom: -2px;
+
+	text-align: center;
+	font-size: 16px;
+	color: rgb(88, 88, 88);
+}
+
+#big-container > .temp-container > .description {
+	margin-bottom: -1px;
+
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 14px;
+	color: rgb(88, 88, 88);
+}
+
+#big-container > .temp-container > .temp {
+	margin-bottom: -15px;
+
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#big-container > .temp-container > .minmax-container {
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-sizing: horizontal;
+}
+
+#big-container > .temp-container > .minmax-container > .minmax {
+	text-align: center;
+	font-size: 15px;
+	color: rgb(88, 88, 88);
+
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+
+	padding: 0 10px;
+	margin-top: 5px;
+}
+
+.minmax.min {
+	color: rgb(0, 153, 255) !important;
+	text-align: right !important;
+}
+
+.minmax.max {
+	color: rgb(243, 126, 0) !important;
+	text-align: left !important;
+}
+
+
+/* More information thingy */
+
+.more-info {
+	margin: 0 -10px;
+}
+
+.more-info > ul {
+	text-align: center;
+	list-style: none;
+}
+
+.more-info > ul > li {
+	display: inline-block;
+
+	font-size: 18px;
+	line-height: 18px;
+	text-align: center;
+}
+
+.more-info > ul > li > i {
+	color: rgb(78, 78, 78);
+}
+
+.more-info > ul > li > span {
+	color: rgb(88, 88, 88);
+}
+
+
+/* Bottom forecast stuff */
+
+footer.forecast-container {
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-sizing: horizontal;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+footer.forecast-container > ul {
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-sizing: horizontal;
+
+	width: 100%;
+	height: 118px;
+
+	list-style: none;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.forecast {
+	width: 70px;
+	text-align: center;
+}
+
+.forecast > .date {
+	font-size: 14px;
+	color: rgb(88, 88, 88);
+	line-height: 14px;
+}
+
+.forecast > img {
+	max-width: 65px;
+}
+
+.forecast > .minmax {
+	font-size: 14px;
+	line-height: 14px;
+	text-align: center !important;
+}

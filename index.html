@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta id="viewport" name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!--<link rel="apple-touch-icon-precomposed" href="res/icon.png"/>-->
+
+		<title>Droplets</title>
+
+		<!-- Styling -->
+		<link rel="stylesheet" type="text/css" href="lib/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+		<!-- Javascript -->
+		<script src="lib/jquery.min.js" type="text/javascript"></script>
+		<script src="js/main.js" type="text/javascript"></script>
+		<script src="js/weather.js" type="text/javascript"></script>
+		<script src="js/listing.js" type="text/javascript"></script>
+		<script src="js/settings.js" type="text/javascript"></script>
+
+		<!-- Everything Firefox OS Building Blocks below -->
+		<link rel="stylesheet" href="lib/Building-Blocks/style/action_menu.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/buttons.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/confirm.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/edit_mode.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/headers.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/input_areas.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/status.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style/switches.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/drawer.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/lists.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/progress_activity.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/scrolling.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/seekbars.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/tabs.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/style_unstable/toolbars.css">
+
+		<!-- Icons -->
+		<link rel="stylesheet" href="lib/Building-Blocks/icons/styles/action_icons.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/icons/styles/media_icons.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/icons/styles/comms_icons.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/icons/styles/settings_icons.css">
+
+		<!-- Transitions -->
+		<link rel="stylesheet" href="lib/Building-Blocks/transitions.css">
+		
+		<!-- Util CSS: some extra tricks -->
+		<link rel="stylesheet" href="lib/Building-Blocks/util.css">
+		<link rel="stylesheet" href="lib/Building-Blocks/fonts.css">
+
+		<!-- Additional markup to make Building Blocks kind of cross browser -->
+		<link rel="stylesheet" href="lib/Building-Blocks/cross_browser.css">
+
+		<!-- Some stuff that isn't included for some reason. -->
+		<link rel="stylesheet" type="text/css" href="css/building-blocks.css">
+	</head>
+
+	<body onload="onload()">
+		<!-- Home Screen -->
+		<section id="index" role="region" data-position="current">
+			<!-- Drawer -->
+			<section data-type="sidebar">
+				<header>
+					<menu type="toolbar">
+						<a href="#">Done</a>
+					</menu>
+					<h1>Options</h1>
+				</header>
+
+				<nav>
+					<ul>
+						<li onclick="action.refresh()"><a href="#">Refresh</a></li>
+						<li onclick="action.units_dialog('open')"><a href="#">Change Units</a></li>
+						<li onclick="action.push_screen('Set-Location')"><a href="#">Set Location</a></li>
+					</ul>
+				</nav>
+			</section>
+
+			<section id="drawer" class="skin-organic" role="region">
+				<!-- Header -->
+				<header class="fixed">
+					<!-- Drawer button -->
+					<a href="#">
+						<span class="icon icon-menu">hide sidebar</span>
+					</a>
+					<a href="#drawer">
+						<span class="icon icon-menu">show sidebar</span>
+					</a>
+
+					<!-- Label -->
+					<h1>Droplets</h1>
+				</header>
+
+				<!-- Contents -->
+				<article class="content scrollable header">
+					<!-- Loading indicator -->
+					<div id="loading">
+						<progress></progress>
+						<p>Getting weather information...</p>
+					</div>
+
+					<div id="weather-center">
+						<!-- Big weather indicator -->
+						<div id="big-container">
+							<div class="img-container">
+								<img />
+							</div>
+
+							<div class="temp-container">
+								<div class="location"></div>
+								<div class="description"></div>
+
+								<div class="temp"></div>
+								<div class="minmax-container">
+									<div class="minmax min"></div>
+									<div class="minmax max"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- The more info thingy -->
+						<div class="more-info">
+							<ul>
+								<li>
+									<i class="icon-tint"></i> <span class="humidity"></span>
+								</li>
+								<li>
+									<i class="icon-cloud"></i> <span class="cloudiness"></span>
+								</li>
+								<li>
+									<i class="icon-leaf"></i> <span class="wind-speed"></span>
+								</li>
+								<li>
+									<i class="icon-location-arrow"></i> <span class="wind-direction"></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Forecast area -->
+					<footer class="forecast-container">
+						<ul>
+						</ul>
+					</footer>
+				</article>
+			</section>
+		</section>
+
+		<!-- Set Location Screen -->
+		<section id="Set-Location" role="region" data-position="right">
+			<!-- Header -->
+			<header class="fixed">
+				<!-- Back button -->
+				<a id="btn-set-location-back" href="#">
+					<span class="icon icon-back">back</span>
+				</a>
+
+				<!-- Input -->
+				<form action="#">
+					<input type="text" placeholder="Location" id="location-input" required="required">
+					<button type="reset">Remove text</button>
+				</form>
+			</header>
+
+			<!-- Contents -->
+			<article class="content scrollable header">
+				<div data-type="list">
+					<ul id="location-search-list">
+					</ul>
+				</div>
+			</article>
+		</section>
+
+		<!-- Units Dialog -->
+		<section id="units-dialog" data-position="back" class="fullscreen" onclick="action.units_dialog('close')">
+			<form role="dialog" data-type="action">
+				<header>Unit Systems</header>
+				<menu>
+					<button>Metric</button>
+					<button>Imperial</button>
+
+					<button>Cancel</button>
+				</menu>
+			</form>
+		</section>
+	</body>
+</html>
