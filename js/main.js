@@ -10,6 +10,10 @@ var onload = function () {
 	styling.load();
 	loading.hide();
 
+	$(window).resize(function () {
+		styling.load();
+	});
+
 	// Setup other stuff.
 	action.setup();
 	listing.clear_locations();
